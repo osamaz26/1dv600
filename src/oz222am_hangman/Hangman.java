@@ -70,6 +70,12 @@ public class Hangman {
         view.print(game.display());
         while ((!game.isSolved()) && (game.getFailedTries() < 9)) {
             var c = view.readCharacter("Type a character: ");
+            if (c == '*') {
+                if (confirm()) {
+                    return;
+                }
+                continue;
+            }
             if (game.verify(c)) {
                 view.print(game.display());
             } else {
@@ -140,6 +146,7 @@ public class Hangman {
     }
 
     private boolean confirm() {
+        view.print("# Are you sure? ");
         var layout = new ConfirmationLayout(view);
         while (true) {
             var menuItem = layout.getMenuItem();

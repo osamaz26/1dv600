@@ -21,7 +21,7 @@ public class Console implements View {
     }
 
     @Override
-    public int readInt(String string) {
+    public int readInt(String string){
         System.out.print(string);
         return scanner.nextInt();
     }
@@ -48,7 +48,13 @@ public class Console implements View {
     @Override
     public MenuItem showMenu(Menu menu) {
         print(menu.render());
-        var item = menu.get(readInt("Choose an option: "));
+        MenuItem item = null;
+        try {
+            item = menu.get(readInt("Choose an option: "));
+        } catch (Exception ignored) {
+            // Empty buffer
+            scanner.nextLine();
+        }
         if (item == null) {
             print("# Invalid option selected! ");
             return showMenu(menu);

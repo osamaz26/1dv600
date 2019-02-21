@@ -10,7 +10,7 @@ public class GameLayout extends Layout {
 
     @Override
     public void show() {
-        getView().print("# Game started");
+        getView().print("# Game started (Press * if you would like to interrupt the game)");
     }
 
 
