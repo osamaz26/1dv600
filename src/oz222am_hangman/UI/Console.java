@@ -21,24 +21,23 @@ public class Console implements View {
     }
 
     @Override
-    public int readInt() {
-        return scanner.nextInt();
-    }
-
-    @Override
     public int readInt(String string) {
         System.out.print(string);
         return scanner.nextInt();
     }
 
     @Override
-    public String readLine() {
+    public String readLine(String string) {
+        // clear previous data
+        scanner.nextLine();
+        System.out.print(string);
         return scanner.nextLine();
     }
 
     @Override
-    public boolean hasNext() {
-        return scanner.hasNext();
+    public char readCharacter(String string) {
+        System.out.print(string);
+        return scanner.next().charAt(0);
     }
 
     @Override
@@ -56,4 +55,6 @@ public class Console implements View {
         }
         return item;
     }
+
+
 }

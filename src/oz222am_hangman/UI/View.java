@@ -8,13 +8,11 @@ public interface View {
 
     void close();
 
-    int readInt();
-
     int readInt(String string);
 
-    String readLine();
+    String readLine(String string);
 
-    boolean hasNext();
+    char readCharacter(String string);
 
     void print(String string);
 

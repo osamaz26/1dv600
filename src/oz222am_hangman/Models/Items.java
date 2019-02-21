@@ -52,4 +52,8 @@ public abstract class Items<T extends Model> {
     public void setPath(String path) {
         this.path = path;
     }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
 }

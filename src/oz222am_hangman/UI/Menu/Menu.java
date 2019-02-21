@@ -10,6 +10,16 @@ public class Menu {
 
     }
 
+    public Menu(Option... args) {
+        add(args);
+    }
+
+    public void add(Option... args) {
+        for (var option : args) {
+            add(items.size() + 1, option);
+        }
+    }
+
     public void add(Option option) {
         add(items.size() + 1, option);
     }
