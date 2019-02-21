@@ -4,6 +4,7 @@ package oz222am_hangman;
 import oz222am_hangman.Models.Games.Game;
 import oz222am_hangman.Models.Words.Words;
 import oz222am_hangman.UI.HangmanImage;
+import oz222am_hangman.UI.Layouts.ConfirmationLayout;
 import oz222am_hangman.UI.Layouts.Game.GameLayout;
 import oz222am_hangman.UI.Layouts.HomeLayout;
 import oz222am_hangman.UI.Layouts.Players.PlayersLayout;
@@ -30,13 +31,16 @@ public class Hangman {
 
         var layout = new HomeLayout(view);
         while (true) {
+            view.print("# What would you like to do ");
             var menuItem = layout.getMenuItem();
             switch (menuItem.getOption()) {
                 case GAME_QUIT: {
-
-                    return;
+                    if (confirm()) {
+                        return;
+                    }
+                    break;
                 }
-                case GAME_PLAY: {
+                case GAME_START: {
                     startGame();
                     break;
                 }
@@ -73,7 +77,9 @@ public class Hangman {
             }
         }
         if (game.isSolved()) {
-            view.print(String.format("# You nailed it after %d tires", game.getTotalTires()));
+            view.print(String.format("# You nailed it after %d tires\n", game.getTotalTires()));
+        } else {
+            view.print("# You lost\n");
         }
     }
 
@@ -83,6 +89,8 @@ public class Hangman {
             var menuItem = layout.getMenuItem();
             switch (menuItem.getOption()) {
                 case WORDS_REMOVE: {
+                    // Todo: implementation
+
                     break;
                 }
                 case WORDS_ADD: {
@@ -97,7 +105,7 @@ public class Hangman {
                     break;
                 }
                 case WORDS_LIST: {
-                    var list = words.get();
+                    // Todo: implementation
                     break;
                 }
                 case BACK: {
@@ -113,17 +121,34 @@ public class Hangman {
             var menuItem = layout.getMenuItem();
             switch (menuItem.getOption()) {
                 case PLAYERS_REGISTER: {
+                    // Todo: implementation
                     break;
                 }
                 case PLAYERS_REMOVE: {
+                    // Todo: implementation
                     break;
                 }
                 case PLAYERS_LIST: {
-
+                    // Todo: implementation
                     break;
                 }
                 case BACK: {
                     return;
+                }
+            }
+        }
+    }
+
+    private boolean confirm() {
+        var layout = new ConfirmationLayout(view);
+        while (true) {
+            var menuItem = layout.getMenuItem();
+            switch (menuItem.getOption()) {
+                case YES: {
+                    return true;
+                }
+                case NO: {
+                    return false;
                 }
             }
         }

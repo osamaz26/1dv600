@@ -56,6 +56,4 @@ public class Words extends Items<Word> {
     public List<Word> get() {
         return null;
     }
-
-
 }

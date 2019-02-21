@@ -19,6 +19,9 @@ public enum Option {
     WORDS_REMOVE,
     WORDS_LIST,
 
+    YES,
+    NO,
+
     BACK;
 
 
@@ -48,6 +51,13 @@ public enum Option {
                 return "Remove word";
             case WORDS_LIST:
                 return "List of words";
+
+
+            case YES:
+                return "Yes";
+
+            case NO:
+                return "No";
 
             case BACK:
                 return "Back";
