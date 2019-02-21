@@ -5,17 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class BaseModelItems<T extends BaseModel> {
+public abstract class Items<T extends Model> {
     private int index;
     private Map<Integer, T> list;
+    private String path;
 
-    public BaseModelItems() {
+    public Items() {
         list = new HashMap<>();
     }
 
     public void remove(int id) throws Exception {
         if (!list.containsKey(id)) {
-            throw new Exception("Item not found");
+            throw new Exception("Option not found");
         }
         list.remove(id);
     }
@@ -26,18 +27,29 @@ public abstract class BaseModelItems<T extends BaseModel> {
     }
 
     public void add(List<T> items) {
-        for (T item: items) {
+        for (T item : items) {
             list.put(item.getId(), item);
         }
     }
+
 
     public Collection<T> getValues() {
         return list.values();
     }
 
-    public int getSize(){
+    public int getSize() {
         return list.size();
     }
 
-    public abstract void read(String path) throws Exception;
+    public abstract void load() throws Exception;
+
+    public abstract void save() throws Exception;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

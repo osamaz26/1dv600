@@ -1,12 +1,12 @@
 package oz222am_hangman.Models.Players;
 
-import oz222am_hangman.Models.BaseModel;
+import oz222am_hangman.Models.Model;
 
-public class Player extends BaseModel {
+public class Player extends Model {
     private String name;
 
 
-    Player() {
+    public Player() {
 
     }
 

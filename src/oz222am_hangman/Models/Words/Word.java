@@ -1,8 +1,8 @@
 package oz222am_hangman.Models.Words;
 
-import oz222am_hangman.Models.BaseModel;
+import oz222am_hangman.Models.Model;
 
-public class Word extends BaseModel {
+public class Word extends Model {
     private String value;
 
     public Word() {
