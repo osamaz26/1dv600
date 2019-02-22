@@ -12,14 +12,27 @@ import oz222am_hangman.UI.Layouts.Words.WordsAddLayout;
 import oz222am_hangman.UI.Layouts.Words.WordsLayout;
 import oz222am_hangman.UI.View;
 
+/**
+ * The type Hangman.
+ */
 public class Hangman {
     private View view;
     private Words words;
 
+    /**
+     * Instantiates a new Hangman.
+     *
+     * @param view the view
+     */
     public Hangman(View view) {
         this.view = view;
     }
 
+    /**
+     * Start.
+     *
+     * @param wordsPath the words path
+     */
     void start(String wordsPath) {
         words = new Words(wordsPath);
         try {
