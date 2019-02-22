@@ -9,13 +9,27 @@ import java.io.FileWriter;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The type Words.
+ */
 public class Words extends Items<Word> {
+    /**
+     * The Random.
+     */
     Random random = new Random();
 
+    /**
+     * Instantiates a new Words.
+     */
     public Words() {
         super();
     }
 
+    /**
+     * Instantiates a new Words.
+     *
+     * @param path the path
+     */
     public Words(String path) {
         super();
         setPath(path);
@@ -40,12 +54,25 @@ public class Words extends Items<Word> {
         bufferedWriter.close();
     }
 
+    /**
+     * Add word.
+     *
+     * @param value the value
+     * @return the word
+     * @throws Exception the exception
+     */
     public Word add(String value) throws Exception {
         var word = new Word();
         word.setValue(value);
         return super.add(word);
     }
 
+    /**
+     * Pick word.
+     *
+     * @return the word
+     * @throws Exception the exception
+     */
     public Word pick() throws Exception {
         if (isEmpty()) {
             throw new Exception("Empty list");
@@ -53,6 +80,11 @@ public class Words extends Items<Word> {
         return (Word) getValues().toArray()[random.nextInt(getSize())];
     }
 
+    /**
+     * Get list.
+     *
+     * @return the list
+     */
     public List<Word> get() {
         return null;
     }

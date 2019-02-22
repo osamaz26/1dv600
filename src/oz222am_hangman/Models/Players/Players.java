@@ -17,8 +17,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * The type Players.
+ */
 public class Players extends Items<Player> {
 
+    /**
+     * Instantiates a new Players.
+     */
     Players() {
         super();
     }
@@ -79,6 +85,13 @@ public class Players extends Items<Player> {
 
     }
 
+    /**
+     * Register player.
+     *
+     * @param name the name
+     * @return the player
+     * @throws Exception the exception
+     */
     public Player register(String name) throws Exception {
         var player = new Player();
         player.setName(name);

@@ -1,5 +1,8 @@
 package oz222am_hangman.UI;
 
+/**
+ * The type Hangman image.
+ */
 public class HangmanImage {
     /*
      * ground, vertical pole, horizontal pole, head, body, left arm, right arm, left leg, right arm
@@ -7,6 +10,12 @@ public class HangmanImage {
      * */
 
 
+    /**
+     * Draw string.
+     *
+     * @param count the count
+     * @return the string
+     */
     public static String draw(int count) {
         var sb = new StringBuilder();
         sb.append(count >= 3 ? "    =======    \n" : "\n");

@@ -1,30 +1,84 @@
 package oz222am_hangman.UI.Menu;
 
+/**
+ * The enum Option.
+ */
 public enum Option {
-    // Game
+    /**
+     * Game start option.
+     */
+// Game
     GAME_START,
+    /**
+     * Game play option.
+     */
     GAME_PLAY,
+    /**
+     * Game quit option.
+     */
     GAME_QUIT,
 
-    // Players
+    /**
+     * Players option.
+     */
+// Players
     PLAYERS,
+    /**
+     * Players register option.
+     */
     PLAYERS_REGISTER,
+    /**
+     * Players remove option.
+     */
     PLAYERS_REMOVE,
+    /**
+     * Players login option.
+     */
     PLAYERS_LOGIN,
+    /**
+     * Players list option.
+     */
     PLAYERS_LIST,
 
-    // Words
+    /**
+     * Words option.
+     */
+// Words
     WORDS,
+    /**
+     * Words add option.
+     */
     WORDS_ADD,
+    /**
+     * Words remove option.
+     */
     WORDS_REMOVE,
+    /**
+     * Words list option.
+     */
     WORDS_LIST,
 
+    /**
+     * Yes option.
+     */
     YES,
+    /**
+     * No option.
+     */
     NO,
 
+    /**
+     * Back option.
+     */
     BACK;
 
 
+    /**
+     * To string string.
+     *
+     * @param option the option
+     * @return the string
+     */
     public static String toString(Option option) {
         switch (option) {
             case GAME_START:

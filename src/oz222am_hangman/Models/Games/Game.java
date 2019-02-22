@@ -2,6 +2,9 @@ package oz222am_hangman.Models.Games;
 
 import oz222am_hangman.Models.Words.Word;
 
+/**
+ * The type Game.
+ */
 public class Game {
     private Word word;
     private char[] chars;
@@ -9,6 +12,11 @@ public class Game {
     private int totalTires = 0;
 
 
+    /**
+     * Instantiates a new Game.
+     *
+     * @param word the word
+     */
     public Game(Word word) {
         this.word = word;
         prepare();
@@ -21,6 +29,12 @@ public class Game {
         }
     }
 
+    /**
+     * Verify boolean.
+     *
+     * @param c the c
+     * @return the boolean
+     */
     public boolean verify(char c) {
         ++totalTires;
         boolean result = false;
@@ -38,6 +52,11 @@ public class Game {
 
     }
 
+    /**
+     * Display string.
+     *
+     * @return the string
+     */
     public String display() {
         StringBuilder result = new StringBuilder();
         for (var character : chars) {
@@ -46,14 +65,29 @@ public class Game {
         return result.toString();
     }
 
+    /**
+     * Is solved boolean.
+     *
+     * @return the boolean
+     */
     public boolean isSolved() {
         return String.valueOf(chars).equals(word.getValue());
     }
 
+    /**
+     * Gets failed tries.
+     *
+     * @return the failed tries
+     */
     public int getFailedTries() {
         return failedTries;
     }
 
+    /**
+     * Gets total tires.
+     *
+     * @return the total tires
+     */
     public int getTotalTires() {
         return totalTires;
     }

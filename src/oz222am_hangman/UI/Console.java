@@ -5,6 +5,9 @@ import oz222am_hangman.UI.Menu.MenuItem;
 
 import java.util.Scanner;
 
+/**
+ * The type Console.
+ */
 public class Console implements View {
     private Scanner scanner;
 
