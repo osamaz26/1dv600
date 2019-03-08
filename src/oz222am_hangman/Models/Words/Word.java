@@ -16,6 +16,15 @@ public class Word extends Model {
     }
 
     private boolean validateValue(String word) {
+        if (word.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < word.length(); ++i) {
+            if (!Character.isLetter(word.charAt(i))
+            ) {
+                return false;
+            }
+        }
         return true;
     }
 
