@@ -4,7 +4,7 @@ package oz222am_hangman.Models;
  * The type Model.
  */
 public abstract class Model {
-    private int id;
+    private int id = Integer.MIN_VALUE;
 
     /**
      * Gets id.

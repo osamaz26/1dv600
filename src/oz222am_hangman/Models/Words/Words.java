@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -78,14 +77,5 @@ public class Words extends Items<Word> {
             throw new Exception("Empty list");
         }
         return (Word) getValues().toArray()[random.nextInt(getSize())];
-    }
-
-    /**
-     * Get list.
-     *
-     * @return the list
-     */
-    public List<Word> get() {
-        return null;
     }
 }

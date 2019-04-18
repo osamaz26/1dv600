@@ -42,7 +42,12 @@ public abstract class Items<T extends Model> {
      * @return the t
      */
     public T add(T item) {
-        list.put(index++, item);
+        if (item.getId() == Integer.MIN_VALUE) {
+            item.setId(index++);
+        } else {
+            index = item.getId() + 1;
+        }
+        list.put(item.getId(), item);
         return item;
     }
 
@@ -115,5 +120,9 @@ public abstract class Items<T extends Model> {
      */
     public boolean isEmpty() {
         return list.isEmpty();
+    }
+
+    public Collection<T> get() {
+        return list.values();
     }
 }

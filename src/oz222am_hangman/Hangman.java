@@ -2,14 +2,18 @@ package oz222am_hangman;
 
 
 import oz222am_hangman.Models.Games.Game;
+import oz222am_hangman.Models.Players.Players;
 import oz222am_hangman.Models.Words.Words;
 import oz222am_hangman.UI.HangmanImage;
 import oz222am_hangman.UI.Layouts.ConfirmationLayout;
 import oz222am_hangman.UI.Layouts.Game.GameLayout;
 import oz222am_hangman.UI.Layouts.HomeLayout;
+import oz222am_hangman.UI.Layouts.Players.PlayersAddLayout;
 import oz222am_hangman.UI.Layouts.Players.PlayersLayout;
+import oz222am_hangman.UI.Layouts.Players.PlayersRemoveLayout;
 import oz222am_hangman.UI.Layouts.Words.WordsAddLayout;
 import oz222am_hangman.UI.Layouts.Words.WordsLayout;
+import oz222am_hangman.UI.Layouts.Words.WordsRemoveLayout;
 import oz222am_hangman.UI.View;
 
 /**
@@ -18,6 +22,7 @@ import oz222am_hangman.UI.View;
 public class Hangman {
     private View view;
     private Words words;
+    private Players players;
 
     /**
      * Instantiates a new Hangman.
@@ -33,12 +38,12 @@ public class Hangman {
      *
      * @param wordsPath the words path
      */
-    void start(String wordsPath) {
-        words = new Words(wordsPath);
-        try {
-            words.load();
-        } catch (Exception e) {
-            e.printStackTrace();
+    void start(String wordsPath, String playersPath) {
+        if (!loadWords(wordsPath)) {
+            return;
+        }
+
+        if (!loadPlayers(playersPath)) {
             return;
         }
 
@@ -67,6 +72,28 @@ public class Hangman {
                 }
             }
         }
+    }
+
+    private boolean loadWords(String path) {
+        words = new Words(path);
+        try {
+            words.load();
+        } catch (Exception e) {
+            view.print("failed to load words file");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean loadPlayers(String path) {
+        players = new Players(path);
+        try {
+            players.load();
+        } catch (Exception e) {
+            view.print("failed to load players file");
+            return false;
+        }
+        return true;
     }
 
     private void startGame() {
@@ -105,11 +132,19 @@ public class Hangman {
     private void startWords() {
         var layout = new WordsLayout(view);
         while (true) {
+            view.print("# What would you like to do with words ");
             var menuItem = layout.getMenuItem();
             switch (menuItem.getOption()) {
                 case WORDS_REMOVE: {
-                    // Todo: implementation
-
+                    var removeLayout = new WordsRemoveLayout(view);
+                    removeLayout.show();
+                    var id = removeLayout.getId();
+                    try {
+                        words.remove(id);
+                        words.save();
+                    } catch (Exception e) {
+                        view.print("failed to remove word from store");
+                    }
                     break;
                 }
                 case WORDS_ADD: {
@@ -119,12 +154,18 @@ public class Hangman {
                         words.add(addLayout.getName());
                         words.save();
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        view.print("failed to add word to store");
                     }
+                    view.print("");
                     break;
                 }
                 case WORDS_LIST: {
-                    // Todo: implementation
+                    var items = words.get();
+                    for (var item : items
+                    ) {
+                        view.print(item.toString());
+                    }
+                    view.print("");
                     break;
                 }
                 case BACK: {
@@ -139,16 +180,37 @@ public class Hangman {
         while (true) {
             var menuItem = layout.getMenuItem();
             switch (menuItem.getOption()) {
-                case PLAYERS_REGISTER: {
-                    // Todo: implementation
+                case PLAYERS_REMOVE: {
+                    var removeLayout = new PlayersRemoveLayout(view);
+                    removeLayout.show();
+                    var id = removeLayout.getId();
+                    try {
+                        words.remove(id);
+                        words.save();
+                    } catch (Exception e) {
+                        view.print("failed to remove player from store");
+                    }
                     break;
                 }
-                case PLAYERS_REMOVE: {
-                    // Todo: implementation
+                case PLAYERS_REGISTER: {
+                    var addLayout = new PlayersAddLayout(view);
+                    addLayout.show();
+                    try {
+                        players.add(addLayout.getName());
+                        players.save();
+                    } catch (Exception e) {
+                        view.print("failed to add player to store");
+                    }
+                    view.print("");
                     break;
                 }
                 case PLAYERS_LIST: {
-                    // Todo: implementation
+                    var items = players.get();
+                    for (var item : items
+                    ) {
+                        view.print(item.toString());
+                    }
+                    view.print("");
                     break;
                 }
                 case BACK: {
