@@ -46,12 +46,12 @@ public class GameTest {
 
 
     /**
-     * Sholud not solved.
+     * Should not solved.
      *
      * @throws Exception the exception
      */
     @Test
-    public void sholudNotSolved() throws Exception {
+    public void shouldNotSolved() throws Exception {
         String input = "abc";
         var word = new Word();
         word.setValue(input);
@@ -62,12 +62,12 @@ public class GameTest {
     }
 
     /**
-     * Sholud return zero.
+     * Should return zero.
      *
      * @throws Exception the exception
      */
     @Test
-    public void sholudReturnZero() throws Exception {
+    public void shouldReturnZero() throws Exception {
         String input = "abc";
         var word = new Word();
         word.setValue(input);
@@ -78,12 +78,12 @@ public class GameTest {
     }
 
     /**
-     * Sholud return total one.
+     * Should return total one.
      *
      * @throws Exception the exception
      */
     @Test
-    public void sholudReturnTotalOne() throws Exception {
+    public void shouldReturnTotalOne() throws Exception {
         String input = "abc";
         var word = new Word();
         word.setValue(input);
