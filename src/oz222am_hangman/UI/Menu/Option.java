@@ -96,6 +96,8 @@ public enum Option {
                 return "Remove player";
             case PLAYERS_LIST:
                 return "List of players";
+            case PLAYERS_LOGIN:
+                return "Login";
 
             case WORDS:
                 return "Words";

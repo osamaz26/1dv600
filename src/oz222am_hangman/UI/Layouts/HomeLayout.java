@@ -17,7 +17,7 @@ public class HomeLayout extends Layout {
      */
     public HomeLayout(View view) {
         super(view);
-        setMenu(new Menu(Option.GAME_START, Option.PLAYERS, Option.WORDS, Option.GAME_QUIT));
+        setMenu(new Menu(Option.GAME_START, Option.PLAYERS_LOGIN, Option.PLAYERS, Option.WORDS, Option.GAME_QUIT));
     }
 
     @Override

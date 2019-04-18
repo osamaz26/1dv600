@@ -2,12 +2,14 @@ package oz222am_hangman;
 
 
 import oz222am_hangman.Models.Games.Game;
+import oz222am_hangman.Models.Players.Player;
 import oz222am_hangman.Models.Players.Players;
 import oz222am_hangman.Models.Words.Words;
 import oz222am_hangman.UI.HangmanImage;
 import oz222am_hangman.UI.Layouts.ConfirmationLayout;
 import oz222am_hangman.UI.Layouts.Game.GameLayout;
 import oz222am_hangman.UI.Layouts.HomeLayout;
+import oz222am_hangman.UI.Layouts.LoginPlayerLayout;
 import oz222am_hangman.UI.Layouts.Players.PlayersAddLayout;
 import oz222am_hangman.UI.Layouts.Players.PlayersLayout;
 import oz222am_hangman.UI.Layouts.Players.PlayersRemoveLayout;
@@ -23,6 +25,7 @@ public class Hangman {
     private View view;
     private Words words;
     private Players players;
+    private Player currentPlayer;
 
     /**
      * Instantiates a new Hangman.
@@ -49,7 +52,7 @@ public class Hangman {
 
         var layout = new HomeLayout(view);
         while (true) {
-            view.print("# What would you like to do ");
+            view.print("# What would you like to do " + getCurrentPlayerName());
             var menuItem = layout.getMenuItem();
             switch (menuItem.getOption()) {
                 case GAME_QUIT: {
@@ -70,8 +73,19 @@ public class Hangman {
                     startWords();
                     break;
                 }
+                case PLAYERS_LOGIN: {
+                    loginPlayer();
+                    break;
+                }
             }
         }
+    }
+
+    private String getCurrentPlayerName() {
+        if (currentPlayer == null) {
+            return null;
+        }
+        return " (" + currentPlayer.getName() + ")";
     }
 
     private boolean loadWords(String path) {
@@ -123,10 +137,23 @@ public class Hangman {
                 view.print(HangmanImage.draw(game.getFailedTries()));
             }
         }
-        if (game.isSolved()) {
-            view.print(String.format("# You nailed it after %d tires\n", game.getTotalTires()));
-        } else {
-            view.print("# You lost\n");
+        // Show message
+        view.print(game.isSolved() ?
+                String.format("# You nailed it after %d tires\n", game.getTotalTires()) :
+                "# You lost\n");
+
+        // add score
+        if (currentPlayer != null) {
+            if (game.isSolved()) {
+                currentPlayer.addWin();
+            } else {
+                currentPlayer.addLose();
+            }
+            try {
+                players.save();
+            } catch (Exception e) {
+                view.print("failed to save score to players file");
+            }
         }
     }
 
@@ -136,6 +163,17 @@ public class Hangman {
 
     private long getElapsed(long lastTime) {
         return (System.currentTimeMillis() - lastTime) / 1000;
+    }
+
+    private void loginPlayer() {
+        var loginPlayerLayout = new LoginPlayerLayout(view);
+        loginPlayerLayout.show();
+        var name = loginPlayerLayout.getName();
+
+        currentPlayer = players.findByName(name);
+        if (currentPlayer == null) {
+            view.print("sorry, invalid name");
+        }
     }
 
     private void startWords() {
@@ -194,8 +232,11 @@ public class Hangman {
                     removeLayout.show();
                     var id = removeLayout.getId();
                     try {
-                        words.remove(id);
-                        words.save();
+                        players.remove(id);
+                        players.save();
+                        if (currentPlayer.getId() == id) {
+                            currentPlayer = null;
+                        }
                     } catch (Exception e) {
                         view.print("failed to remove player from store");
                     }
@@ -205,7 +246,7 @@ public class Hangman {
                     var addLayout = new PlayersAddLayout(view);
                     addLayout.show();
                     try {
-                        players.add(addLayout.getName());
+                        players.register(addLayout.getName());
                         players.save();
                     } catch (Exception e) {
                         view.print("failed to add player to store");

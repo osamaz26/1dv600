@@ -44,7 +44,7 @@ public abstract class Items<T extends Model> {
     public T add(T item) {
         if (item.getId() == Integer.MIN_VALUE) {
             item.setId(index++);
-        } else {
+        } else if (item.getId() >= index) {
             index = item.getId() + 1;
         }
         list.put(item.getId(), item);
