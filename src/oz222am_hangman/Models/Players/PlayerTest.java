@@ -33,8 +33,8 @@ public class PlayerTest {
     public void shouldThrowException() {
         String input = "";
 
-       assertThrows(Exception.class,
-                ()-> sut.setName(input));
+        assertThrows(Exception.class,
+                () -> sut.setName(input));
     }
 
 
@@ -60,10 +60,41 @@ public class PlayerTest {
     @Test
     public void shouldReturnString() throws Exception {
         String input = "otherName";
-        String expected = "[0] Player: " + input;
+        String expected = "[0] Player: " + input + ", wins: 0, loses: 0";
+        sut.setId(0);
         sut.setName(input); //setup sut
 
 
         assertEquals(sut.toString(), expected);
+    }
+
+    @Test
+    public void shouldSetNumberOfWins() throws Exception {
+        String input = "otherName";
+        var expected = 50;
+        sut.setNumberOfWins(50);
+        sut.setName(input); //setup sut
+
+
+        assertEquals(sut.getNumberOfWins(), expected);
+
+        sut.addWin();
+
+        assertEquals(sut.getNumberOfWins(), expected + 1);
+    }
+
+    @Test
+    public void shouldSetNumberOfLoses() throws Exception {
+        String input = "otherName";
+        var expected = 50;
+        sut.setNumberOfLoses(50);
+        sut.setName(input); //setup sut
+
+
+        assertEquals(sut.getNumberOfLoses(), expected);
+
+        sut.addLose();
+
+        assertEquals(sut.getNumberOfLoses(), expected + 1);
     }
 }
