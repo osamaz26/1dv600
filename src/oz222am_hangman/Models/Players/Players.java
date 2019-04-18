@@ -20,6 +20,11 @@ public class Players extends Items<Player> {
         super();
     }
 
+    /**
+     * Instantiates a new Players.
+     *
+     * @param path the path
+     */
     public Players(String path) {
         super();
         setPath(path);
@@ -71,6 +76,13 @@ public class Players extends Items<Player> {
         bufferedWriter.close();
     }
 
+    /**
+     * Add player.
+     *
+     * @param value the value
+     * @return the player
+     * @throws Exception the exception
+     */
     public Player add(String value) throws Exception {
         var player = new Player();
         player.setName(value);
@@ -91,6 +103,12 @@ public class Players extends Items<Player> {
         return super.add(player);
     }
 
+    /**
+     * Find by name player.
+     *
+     * @param name the name
+     * @return the player
+     */
     public Player findByName(String name) {
         for (var player: getValues()
              ) {

@@ -122,6 +122,11 @@ public abstract class Items<T extends Model> {
         return list.isEmpty();
     }
 
+    /**
+     * Get collection.
+     *
+     * @return the collection
+     */
     public Collection<T> get() {
         return list.values();
     }

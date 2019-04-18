@@ -39,7 +39,8 @@ public class Hangman {
     /**
      * Start.
      *
-     * @param wordsPath the words path
+     * @param wordsPath   the words path
+     * @param playersPath the players path
      */
     void start(String wordsPath, String playersPath) {
         if (!loadWords(wordsPath)) {

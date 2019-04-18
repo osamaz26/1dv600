@@ -6,9 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+/**
+ * The type Player test.
+ */
 public class PlayerTest {
     private Player sut = new Player();
 
+    /**
+     * Should set value.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldSetValue() throws Exception {
         String input = "otherName";
@@ -18,6 +26,9 @@ public class PlayerTest {
     }
 
 
+    /**
+     * Should throw exception.
+     */
     @Test
     public void shouldThrowException() {
         String input = "";
@@ -27,6 +38,11 @@ public class PlayerTest {
     }
 
 
+    /**
+     * Should return value.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldReturnValue() throws Exception {
         String input = "otherName";
@@ -36,6 +52,11 @@ public class PlayerTest {
         assertEquals(sut.getName(), expected);
     }
 
+    /**
+     * Should return string.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldReturnString() throws Exception {
         String input = "otherName";

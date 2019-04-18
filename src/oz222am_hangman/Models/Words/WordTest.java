@@ -6,9 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+/**
+ * The type Word test.
+ */
 public class WordTest {
     private Word sut = new Word();
 
+    /**
+     * Should set value.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldSetValue() throws Exception {
         String input = "otherName";
@@ -18,6 +26,9 @@ public class WordTest {
     }
 
 
+    /**
+     * Should throw exception.
+     */
     @Test
     public void shouldThrowException() {
         String input = "";
@@ -27,6 +38,11 @@ public class WordTest {
     }
 
 
+    /**
+     * Should return value.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldReturnValue() throws Exception {
         String input = "otherName";
@@ -36,6 +52,11 @@ public class WordTest {
         assertEquals(sut.getValue(), expected);
     }
 
+    /**
+     * Should return string.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldReturnString() throws Exception {
         String input = "otherName";

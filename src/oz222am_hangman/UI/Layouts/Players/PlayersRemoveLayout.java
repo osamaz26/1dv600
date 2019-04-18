@@ -8,6 +8,9 @@ import oz222am_hangman.UI.View;
  */
 public class PlayersRemoveLayout extends Layout {
 
+    /**
+     * The Id.
+     */
     int id;
 
     /**
@@ -24,6 +27,11 @@ public class PlayersRemoveLayout extends Layout {
 
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }

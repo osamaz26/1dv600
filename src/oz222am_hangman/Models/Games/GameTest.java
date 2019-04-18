@@ -6,9 +6,17 @@ import oz222am_hangman.Models.Words.Word;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+/**
+ * The type Game test.
+ */
 public class GameTest {
 
 
+    /**
+     * Should return true.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldReturnTrue() throws Exception {
         String input = "abc";
@@ -19,6 +27,11 @@ public class GameTest {
         assertTrue(game.verify('c'));
     }
 
+    /**
+     * Should display character.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void shouldDisplayCharacter() throws Exception {
         String input = "abc";
@@ -32,6 +45,11 @@ public class GameTest {
     }
 
 
+    /**
+     * Sholud not solved.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void sholudNotSolved() throws Exception {
         String input = "abc";
@@ -43,6 +61,11 @@ public class GameTest {
         assertFalse(game.isSolved());
     }
 
+    /**
+     * Sholud return zero.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void sholudReturnZero() throws Exception {
         String input = "abc";
@@ -54,6 +77,11 @@ public class GameTest {
         assertEquals(game.getFailedTries(), 0);
     }
 
+    /**
+     * Sholud return total one.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void sholudReturnTotalOne() throws Exception {
         String input = "abc";

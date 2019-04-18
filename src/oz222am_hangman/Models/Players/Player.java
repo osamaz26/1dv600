@@ -56,26 +56,52 @@ public class Player extends Model {
                 name, numberOfWins, numberOfLoses);
     }
 
+    /**
+     * Gets number of loses.
+     *
+     * @return the number of loses
+     */
     public int getNumberOfLoses() {
         return numberOfLoses;
     }
 
+    /**
+     * Sets number of loses.
+     *
+     * @param numberOfLoses the number of loses
+     */
     public void setNumberOfLoses(int numberOfLoses) {
         this.numberOfLoses = numberOfLoses;
     }
 
+    /**
+     * Gets number of wins.
+     *
+     * @return the number of wins
+     */
     public int getNumberOfWins() {
         return numberOfWins;
     }
 
+    /**
+     * Sets number of wins.
+     *
+     * @param numberOfWins the number of wins
+     */
     public void setNumberOfWins(int numberOfWins) {
         this.numberOfWins = numberOfWins;
     }
 
+    /**
+     * Add win.
+     */
     public void addWin() {
         ++this.numberOfWins;
     }
 
+    /**
+     * Add lose.
+     */
     public void addLose() {
         ++this.numberOfLoses;
     }
