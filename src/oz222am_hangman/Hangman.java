@@ -107,9 +107,10 @@ public class Hangman {
             e.printStackTrace();
             return;
         }
+        var lastTime = System.currentTimeMillis();
         view.print(game.display());
-        while ((!game.isSolved()) && (game.getFailedTries() < 9)) {
-            var c = view.readCharacter("Type a character: ");
+        while ((!game.isSolved()) && (!isExpired(lastTime)) && (game.getFailedTries() < 9)) {
+            var c = view.readCharacter("Type a character (" + (180 - getElapsed(lastTime)) + " secs left): ");
             if (c == '*') {
                 if (confirm()) {
                     return;
@@ -127,6 +128,14 @@ public class Hangman {
         } else {
             view.print("# You lost\n");
         }
+    }
+
+    private boolean isExpired(long lastTime) {
+        return getElapsed(lastTime) > 180;
+    }
+
+    private long getElapsed(long lastTime) {
+        return (System.currentTimeMillis() - lastTime) / 1000;
     }
 
     private void startWords() {
