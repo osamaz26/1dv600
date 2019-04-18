@@ -3,10 +3,7 @@ package oz222am_hangman.Models.Players;
 
 import oz222am_hangman.Models.Items;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 /**
  * The type Players.
@@ -39,17 +36,17 @@ public class Players extends Items<Player> {
         while ((line = bufferedReader.readLine()) != null) {
             var pos = line.indexOf(" ");
             if (pos < 0) {
-                continue;
+                throw new IOException("Ill-formatted file");
             }
             id = Integer.parseInt(line.substring(0, pos));
             var winPos = line.indexOf(" ", pos + 1);
             if (winPos < 0) {
-                continue;
+                throw new IOException("Ill-formatted file");
             }
             numberOfWins = Integer.parseInt(line.substring(pos + 1, winPos));
             var losePos = line.indexOf(" ", winPos + 1);
             if (losePos < 0) {
-                continue;
+                throw new IOException("Ill-formatted file");
             }
             numberOfLoses = Integer.parseInt(line.substring(winPos + 1, losePos));
             name = line.substring(losePos + 1);
@@ -76,18 +73,6 @@ public class Players extends Items<Player> {
         bufferedWriter.close();
     }
 
-    /**
-     * Add player.
-     *
-     * @param value the value
-     * @return the player
-     * @throws Exception the exception
-     */
-    public Player add(String value) throws Exception {
-        var player = new Player();
-        player.setName(value);
-        return super.add(player);
-    }
 
     /**
      * Register player.
@@ -99,7 +84,6 @@ public class Players extends Items<Player> {
     public Player register(String name) throws Exception {
         var player = new Player();
         player.setName(name);
-        save();
         return super.add(player);
     }
 
