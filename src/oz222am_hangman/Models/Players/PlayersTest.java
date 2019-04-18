@@ -11,11 +11,17 @@ public class PlayersTest {
 
 
     @Test
+    void shouldSetPath() {
+        var players = new Players();
+        players.setPath("test_path");
+        assertEquals("test_path", players.getPath());
+    }
+
+    @Test
     void shouldLoad() {
         var players = new Players();
         players.setPath(this.basePath + "no_found_path.txt");
         assertThrows(Exception.class, players::load);
-
         players.setPath(this.basePath + "players_ill_formatted_0.txt");
         assertThrows(Exception.class, players::load);
 
@@ -27,7 +33,6 @@ public class PlayersTest {
 
         players.setPath(this.basePath + "players_load_test.txt");
         assertDoesNotThrow(players::load);
-
         assertEquals(2, players.getSize());
     }
 
@@ -45,8 +50,6 @@ public class PlayersTest {
         assertEquals(2, players.getSize());
 
         assertDoesNotThrow(players::save);
-
-
     }
 
     @Test
